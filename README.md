@@ -3,6 +3,8 @@
 ## Technical Details
 Project is bootstrapped with `create-react-app`, styled with `react-bootstrap` component library.
 
+Before anything, run `npm install` or `yarn` to install the dependencies
+
 ### Test
 To run the tests run `npm run test` or `yarn test`
 
