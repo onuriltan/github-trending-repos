@@ -26,7 +26,8 @@ const TrendingReposListContainer = () => {
       );
       const theStarredrepos = {};
       for (const repo of response.data.items) {
-        if (window.localStorage.getItem(repo.full_name) === undefined) {
+        console.log(window.localStorage.getItem(repo.full_name))
+        if (window.localStorage.getItem(repo.full_name) === null) {
           window.localStorage.setItem(repo.full_name, "false");
         }
       }
@@ -48,6 +49,7 @@ const TrendingReposListContainer = () => {
 
   useEffect(() => {
     setTrendingRepos(null);
+    setStarredRepos({})
     getTrendingRepos();
     //eslint-disable-next-line
   }, [language]);
