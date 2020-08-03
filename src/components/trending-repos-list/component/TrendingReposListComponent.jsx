@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import moment from "moment";
 import EmptyStar from "../../../assets/star-empty.svg";
 import FullStar from "../../../assets/star-full.svg";
+import './TrendingReposListComponent.scss'
 
 const TrendingRepoListComponent = ({ trendingRepos, onStarClick, starredRepos }) => {
   return (
@@ -28,6 +29,7 @@ const TrendingRepoListComponent = ({ trendingRepos, onStarClick, starredRepos })
               <td>{moment(created_at).format("YYYY-MM-DD")}</td>
               <td>
                 <img
+                  className='star'
                   onClick={() => onStarClick(full_name)}
                   src={
                     !starredRepos[full_name]
