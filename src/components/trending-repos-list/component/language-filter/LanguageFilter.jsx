@@ -12,7 +12,7 @@ const LanguageFilter = ({ onSetLanguage }) => {
       <Form inline onSubmit={(e) => {onSetLanguage(language); e.preventDefault();}}>
         <FormControl
           type="text"
-          placeholder="Filter Language"
+          placeholder="Enter language"
           value={language}
           className=" mr-sm-2"
           onChange={onChange}
