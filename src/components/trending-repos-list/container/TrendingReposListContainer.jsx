@@ -77,18 +77,15 @@ const TrendingReposListContainer = () => {
     setStarredRepos(starredReposClone);
   };
 
-  const onSetLanguage = (selectedLang) => {
+  const onSubmitFilterForm = (selectedLang, isStarred) => {
     setLanguage(selectedLang);
-  };
-  const onIsStarredChecked = (isStarred) => {
     setFilterStarredRepos(isStarred);
-  };
+  } 
 
   return (
     <div className="d-flex justify-content-center align-items-center flex-column mt-5">
       <RepoFilter
-        onSetLanguage={onSetLanguage}
-        onIsStarredChecked={onIsStarredChecked}
+        onSubmitFilterForm={onSubmitFilterForm}
       />
       {!trendingRepos ? (
         <Spinner animation="border" />

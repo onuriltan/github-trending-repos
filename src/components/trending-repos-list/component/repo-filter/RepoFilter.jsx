@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Form, FormControl, Button } from "react-bootstrap";
 
-const RepoFilter = ({ onSetLanguage, onIsStarredChecked }) => {
+const RepoFilter = ({ onSubmitFilterForm }) => {
   const [language, setLanguage] = useState("");
   const [isStarredChecked, setIsStarredChecked] = useState(false);
   const onSubmit = event => {
     event.preventDefault()
-    onSetLanguage(language)
-    onIsStarredChecked(isStarredChecked)
+    onSubmitFilterForm(language, isStarredChecked)
   }
 
   return (
