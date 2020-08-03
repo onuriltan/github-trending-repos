@@ -10,18 +10,24 @@ const TrendingReposListContainer = () => {
   const githubRepositoriesApiUrl = "https://api.github.com/search/repositories";
 
   const getTrendingRepos = async () => {
+    let query = `created:>${aWeekBefore}`;
+    if (language) {
+      query = `created:>${aWeekBefore}+language:${language}`;
+    }
     try {
-      const response = await axios.get(githubRepositoriesApiUrl, {
-        params: {
-          q: `created:>${aWeekBefore}`,
-          sort: "stars",
-          order: "desc",
-        },
-      });
+      const response = await axios.get(
+        `${githubRepositoriesApiUrl}?q=${query}`,
+        {
+          params: {
+            sort: "stars",
+            order: "desc",
+          },
+        }
+      );
       const theStarredrepos = {};
       for (const repo of response.data.items) {
-        if(window.localStorage.getItem(repo.full_name) === undefined) {
-          window.localStorage.setItem(repo.full_name, 'false');
+        if (window.localStorage.getItem(repo.full_name) === undefined) {
+          window.localStorage.setItem(repo.full_name, "false");
         }
       }
       for (const repo of response.data.items) {
@@ -38,11 +44,13 @@ const TrendingReposListContainer = () => {
 
   const [trendingRepos, setTrendingRepos] = useState(null);
   const [starredRepos, setStarredRepos] = useState({});
+  const [language, setLanguage] = useState("");
 
   useEffect(() => {
+    setTrendingRepos(null)
     getTrendingRepos();
     //eslint-disable-next-line
-  }, []);
+  }, [language]);
 
   const onStarClick = (projectName) => {
     const isStarred = eval(window.localStorage.getItem(projectName));
@@ -55,10 +63,13 @@ const TrendingReposListContainer = () => {
     }
     setStarredRepos(starredReposClone);
   };
+  const onSetLanguage = (selectedLang) => {
+    setLanguage(selectedLang);
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center flex-column mt-5">
-      <LanguageFilter />
+      <LanguageFilter onSetLanguage={onSetLanguage} />
       {!trendingRepos ? (
         <Spinner animation="border" />
       ) : (
