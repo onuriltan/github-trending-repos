@@ -40,7 +40,6 @@ const TrendingReposListContainer = () => {
         const starredRepos = response.data.items.filter((repo) => {
           return window.localStorage.getItem(repo.full_name) === "true"
         })
-        console.log(starredRepos)
         setTrendingRepos(starredRepos);
       } else {
         setTrendingRepos(response.data.items);
