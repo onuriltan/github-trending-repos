@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Spinner } from "react-bootstrap";
-import TrendingReposListComponent from "../component/TrendingReposListComponent";
+import TrendingReposListComponent from "../component/repo-list/TrendingReposListComponent";
+import LanguageFilter from "../component/language-filter/LanguageFilter";
 
 const TrendingReposListContainer = () => {
   const aWeekBefore = moment().subtract(7, "d").format("YYYY-MM-DD");
@@ -56,7 +57,8 @@ const TrendingReposListContainer = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center mt-5">
+    <div className="d-flex justify-content-center align-items-center flex-column mt-5">
+      <LanguageFilter />
       {!trendingRepos ? (
         <Spinner animation="border" />
       ) : (
