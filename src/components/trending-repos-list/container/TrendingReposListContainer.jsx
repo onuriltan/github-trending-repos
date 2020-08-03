@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from 'moment';
 import { Spinner } from "react-bootstrap";
+import TrendingReposListComponent from '../component/TrendingReposListComponent'
 
 const TrendingReposListContainer = () => {
 
@@ -41,7 +42,7 @@ const TrendingReposListContainer = () => {
           ?
           <Spinner animation="border"/>
           :
-          <div />
+          <TrendingReposListComponent  trendingRepos={trendingRepos} />
       }
     </div>
   );
