@@ -4,7 +4,7 @@ import moment from "moment";
 import EmptyStar from "../../../assets/star-empty.svg";
 import FullStar from "../../../assets/star-full.svg";
 
-const TrendingRepoListComponent = ({ trendingRepos }) => {
+const TrendingRepoListComponent = ({ trendingRepos, onStarClick, starredRepos }) => {
   return (
     <Table striped bordered hover>
       <thead>
@@ -28,10 +28,11 @@ const TrendingRepoListComponent = ({ trendingRepos }) => {
               <td>{moment(created_at).format("YYYY-MM-DD")}</td>
               <td>
                 <img
+                  onClick={() => onStarClick(full_name)}
                   src={
-                    !window.localStorage.getItem(full_name)
-                      ? FullStar
-                      : EmptyStar
+                    !starredRepos[full_name]
+                      ? EmptyStar
+                      : FullStar
                   }
                   alt="star"
                   style={{ width: 30 }}
