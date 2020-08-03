@@ -31,8 +31,8 @@ const TrendingReposListContainer = () => {
         }
       }
       for (const repo of response.data.items) {
-        theStarredrepos[repo.full_name] = eval(
-          window.localStorage.getItem(repo.full_name)
+        theStarredrepos[repo.full_name] = window.localStorage.getItem(
+          repo.full_name
         );
       }
       setStarredRepos(theStarredrepos);
@@ -47,18 +47,22 @@ const TrendingReposListContainer = () => {
   const [language, setLanguage] = useState("");
 
   useEffect(() => {
-    setTrendingRepos(null)
+    setTrendingRepos(null);
     getTrendingRepos();
     //eslint-disable-next-line
   }, [language]);
 
   const onStarClick = (projectName) => {
-    const isStarred = eval(window.localStorage.getItem(projectName));
-    window.localStorage.setItem(projectName, !isStarred);
+    const isStarred = window.localStorage.getItem(projectName);
+    if(isStarred === "false") {
+      window.localStorage.setItem(projectName, "true");
+    } else if(isStarred === "true"){
+      window.localStorage.setItem(projectName, "false");
+    }
     const starredReposClone = { ...starredRepos };
     for (const trendingRepo of trendingRepos) {
-      starredReposClone[trendingRepo.full_name] = eval(
-        window.localStorage.getItem(trendingRepo.full_name)
+      starredReposClone[trendingRepo.full_name] = window.localStorage.getItem(
+        trendingRepo.full_name
       );
     }
     setStarredRepos(starredReposClone);
