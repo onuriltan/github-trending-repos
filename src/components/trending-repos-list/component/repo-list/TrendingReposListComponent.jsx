@@ -10,6 +10,7 @@ const TrendingRepoListComponent = ({
   onStarClick,
   starredRepos,
 }) => {
+
   return (
     <Table striped bordered hover>
       <thead>
